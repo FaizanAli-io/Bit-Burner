@@ -1,0 +1,225 @@
+API BREAK INFO FOR 3.0.0
+
+You cannot use the deprecated VSCode extension to connect to the Steam app via API server now. You have to use Remote API to connect your external editors to Bitburner.
+For more information, please check the Remote API page in the Documentation tab. If you have a question, please ask us on #external-editors on Discord (https://discord.gg/TFc3hKD).
+
+
+
+The formatting functions have been moved to their own interface, ns.format.
+Each function has been replaced with their corresponding interface variant.
+Additionally, the naming of ns.tFormat has been changed to ns.format.time.
+
+Usage of the following functions may have been affected:
+ns.formatNumber
+ns.formatRam
+ns.formatPercent
+ns.tFormat
+
+Potentially affected files on server home (with line numbers):
+controller.js: (Line numbers: 64, 92, 93, 94, 95)
+misc/timer.js: (Line number: 17)
+blade.js: (Line numbers: 141, 142, 145, 146, 147, 149, 150, 153, 156, 158, 194, 195, 196, 197, 198, 199)
+augs.js: (Line number: 20)
+misc/karma.js: (Line numbers: 18, 20, 22, 24)
+graft.js: (Line number: 11)
+display.js: (Line numbers: 19, 19, 27, 27)
+workers/buyRamAndCores.js: (Line numbers: 5, 10)
+workers/buyTorAndPrograms.js: (Line number: 13)
+primer.js: (Line number: 51)
+analyze.js: (Line numbers: 88, 111, 111)
+helpers.js: (Line number: 26)
+common.js: (Line number: 3)
+crimes.js: (Line numbers: 10, 10)
+factions/faction-work.js: (Line numbers: 37, 37)
+installCost.js: (Line numbers: 4, 7, 15, 32)
+corporate/boostOptimizer.js: (Line number: 90)
+corporate/storageOptimizer.js: (Line numbers: 34, 35, 41, 42, 56)
+corporate/customBuy.js: (Line numbers: 23, 30)
+corporate/buyAndAssignEmployees.js: (Line numbers: 33, 34)
+corporate/continuousDevelopment.js: (Line numbers: 51, 58)
+
+
+
+ns.corporation.setAutoJobAssignment() was removed.
+It has been automatically replaced with "ns.corporation.setJobAssignment()".
+
+Usage of the following functions may have been affected:
+ns.corporation.setAutoJobAssignment
+
+Potentially affected files on server home (with line numbers):
+corporate/buyAndAssignEmployees.js: (Line numbers: 54, 61, 64)
+
+
+
+With some APIs, when you passed values to their params, you could pass a value that was not an exact match. For example, with ns.singularity.commitCrime, you could pass "Rob Store", "rob store", "RobStore", "robstore", "robStore", etc. This is called "fuzzy matching". Now, you must pass an exact value (i.e., Rob Store). This change affects:
+- Bladeburner action and type: BladeburnerActionType, BladeburnerGeneralActionName, BladeburnerContractName, BladeburnerOperationName, BladeburnerBlackOpName, SpecialBladeburnerActionTypeForSleeve, BladeburnerActionTypeForSleeve.
+- Crime: CrimeType
+- Faction work: FactionWorkType
+- University class: UniversityClassType
+- Gym stat: GymType
+- Job field: JobField
+- Stock position: PositionType
+- Stock order: OrderType
+You can access these values via ns.enums and Bladeburner APIs.
+
+
+
+ns.nuke, ns.brutessh, ns.ftpcrack, ns.relaysmtp, ns.httpworm, and ns.sqlinject now do not throw an error when you do not have the required .exe file or enough opened ports.
+This should not be a problem with most scripts. However, if you were catching errors and branching on the result of success/failure, you will need to use the return value instead.
+
+Usage of the following functions may have been affected:
+ns.nuke
+ns.brutessh
+ns.ftpcrack
+ns.relaysmtp
+ns.httpworm
+ns.sqlinject
+
+Potentially affected files on server home (with line numbers):
+crack.js: (Line numbers: 3, 4, 5, 6, 7, 18)
+
+
+
+ns.bladeburner.getActionRepGain returned the average rank gain instead of the average reputation gain.
+This bug was fixed. Please check your code to see if it still works as you expect.
+
+Usage of the following functions may have been affected:
+getActionRepGain
+
+Potentially affected files on server home (with line numbers):
+blade.js: (Line number: 188)
+
+
+
+Some APIs returned a default value when you passed the hostname of a non-hackable server (e.g., hacknet server) to them.
+These APIs now throw an error. The affected APIs are:
+- ns.hackAnalyzeThreads
+- ns.hackAnalyze
+- ns.hackAnalyzeSecurity
+- ns.hackAnalyzeChance
+- ns.growthAnalyze
+- ns.growthAnalyzeSecurity
+- ns.nuke
+- ns.brutessh
+- ns.ftpcrack
+- ns.relaysmtp
+- ns.httpworm
+- ns.sqlinject
+- ns.getServerMoneyAvailable
+- ns.getServerSecurityLevel
+- ns.getServerBaseSecurityLevel
+- ns.getServerMinSecurityLevel
+- ns.getServerRequiredHackingLevel
+- ns.getServerMaxMoney
+- ns.getServerGrowth
+- ns.getServerNumPortsRequired
+- ns.cloud.deleteServer
+- ns.getHackTime
+- ns.getGrowTime
+- ns.getWeakenTime
+
+
+Usage of the following functions may have been affected:
+ns.hackAnalyzeThreads
+ns.hackAnalyze
+ns.hackAnalyzeSecurity
+ns.hackAnalyzeChance
+ns.growthAnalyze
+ns.growthAnalyzeSecurity
+ns.nuke
+ns.brutessh
+ns.ftpcrack
+ns.relaysmtp
+ns.httpworm
+ns.sqlinject
+ns.getServerMoneyAvailable
+ns.getServerSecurityLevel
+ns.getServerBaseSecurityLevel
+ns.getServerMinSecurityLevel
+ns.getServerRequiredHackingLevel
+ns.getServerMaxMoney
+ns.getServerGrowth
+ns.getServerNumPortsRequired
+ns.deleteServer
+ns.getHackTime
+ns.getGrowTime
+ns.getWeakenTime
+
+Potentially affected files on server home (with line numbers):
+controller.js: (Line numbers: 109, 109, 113, 116, 117, 122, 123, 124, 124, 125, 125, 129, 130, 131, 132)
+workers/buyRamAndCores.js: (Line numbers: 4, 9)
+workers/buyTorAndPrograms.js: (Line number: 12)
+workers/buyAndUpgradeServers.js: (Line numbers: 6, 29)
+primer.js: (Line numbers: 101, 102)
+analyze.js: (Line numbers: 137, 137, 138, 138)
+helpers.js: (Line numbers: 2, 3, 4, 5, 11, 13, 14, 14)
+factions/hack-factions.js: (Line numbers: 30, 77)
+crack.js: (Line numbers: 3, 4, 5, 6, 7, 9, 18)
+
+
+
+The cloud server (purchased server) functions have been moved to their own interface, ns.cloud.
+"ns.getPurchasedServerCost()" was removed.
+It has been automatically replaced with "ns.cloud.getServerCost()"
+
+"ns.purchaseServer()" was removed.
+It has been automatically replaced with "ns.cloud.purchaseServer()"
+
+"ns.getPurchasedServerUpgradeCost()" was removed.
+It has been automatically replaced with "ns.cloud.getServerUpgradeCost()"
+
+"ns.upgradePurchasedServer()" was removed.
+It has been automatically replaced with "ns.cloud.upgradeServer()"
+
+"ns.renamePurchasedServer()" was removed.
+It has been automatically replaced with "ns.cloud.renameServer()"
+
+"ns.deleteServer()" was removed.
+It has been automatically replaced with "ns.cloud.deleteServer()"
+
+"ns.getPurchasedServers()" was removed.
+It has been automatically replaced with "ns.cloud.getServerNames()"
+
+"ns.getPurchasedServerLimit()" was removed.
+It has been automatically replaced with "ns.cloud.getServerLimit()"
+
+"ns.getPurchasedServerMaxRam()" was removed.
+It has been automatically replaced with "ns.cloud.getRamLimit()"
+
+Usage of the following functions may have been affected:
+ns.getPurchasedServerCost
+ns.purchaseServer
+ns.getPurchasedServerUpgradeCost
+ns.upgradePurchasedServer
+ns.renamePurchasedServer
+ns.deleteServer
+ns.getPurchasedServers
+ns.getPurchasedServerLimit
+ns.getPurchasedServerMaxRam
+
+Potentially affected files on server home (with line numbers):
+controller.js: (Line number: 23)
+stop.js: (Line number: 3)
+display.js: (Line numbers: 8, 9, 14, 17)
+workers/buyAndUpgradeServers.js: (Line numbers: 3, 4, 5, 8, 10, 15, 22, 28, 32)
+primer.js: (Line number: 24)
+analyze.js: (Line number: 23)
+
+
+
+We added a new feature called Dark Net. The "darkweb" server is a darknet server now.
+Some APIs that require the target host to be a normal server do not work with darkweb. This should not be a 
+problem with most scripts. The most potentially affected API is "ns.scan()". Darkweb does not appear in the 
+result of this API anymore. If you want to find darknet servers, you need to use "ns.dnet.probe()".
+
+
+
+ns.cloud.purchaseServer() and ns.cloud.deleteServer() previously removed whitespace from the provided hostname inconsistently.
+They now use the hostname as provided.
+
+Usage of the following functions may have been affected:
+ns.cloud.purchaseServer
+ns.cloud.deleteServer
+
+Potentially affected files on server home (with line numbers):
+workers/buyAndUpgradeServers.js: (Line number: 10)

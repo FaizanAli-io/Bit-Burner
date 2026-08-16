@@ -1,0 +1,12 @@
+export const colors = {
+  black: '\x1B[30m',
+  red: '\x1B[31m',
+  green: '\x1B[32m',
+  yellow: '\x1B[33m',
+  blue: '\x1B[34m',
+  magenta: '\x1B[35m',
+  cyan: '\x1B[36m',
+  white: '\x1B[37m',
+  reset: '\x1B[0m',
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbG9ycy50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgY29sb3JzOiBSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+ID0ge1xuICBibGFjazogJ1xceDFiWzMwbScsXG4gIHJlZDogJ1xceDFiWzMxbScsXG4gIGdyZWVuOiAnXFx4MWJbMzJtJyxcbiAgeWVsbG93OiAnXFx4MWJbMzNtJyxcbiAgYmx1ZTogJ1xceDFiWzM0bScsXG4gIG1hZ2VudGE6ICdcXHgxYlszNW0nLFxuICBjeWFuOiAnXFx4MWJbMzZtJyxcbiAgd2hpdGU6ICdcXHgxYlszN20nLFxuICByZXNldDogJ1xceDFiWzBtJyxcbn07XG4iXSwibWFwcGluZ3MiOiJBQUFPLGFBQU0sU0FBaUM7QUFBQSxFQUM1QyxPQUFPO0FBQUEsRUFDUCxLQUFLO0FBQUEsRUFDTCxPQUFPO0FBQUEsRUFDUCxRQUFRO0FBQUEsRUFDUixNQUFNO0FBQUEsRUFDTixTQUFTO0FBQUEsRUFDVCxNQUFNO0FBQUEsRUFDTixPQUFPO0FBQUEsRUFDUCxPQUFPO0FBQ1Q7IiwibmFtZXMiOltdfQ==
